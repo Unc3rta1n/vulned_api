@@ -40,4 +40,4 @@ def setup_logger(name: str, level: str) -> logging.Logger:
 
     return logger
 
-logger = setup_logger("logger", logging.INFO)
+logger = setup_logger("fastapi_app", logging.INFO)
