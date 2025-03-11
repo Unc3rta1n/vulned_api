@@ -1,9 +1,7 @@
 import asyncpg
 import logging
 
-# Настройка логирования
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from logger import logger
 
 # Подключение к базе данных через сервис db из Docker Compose
 async def get_conn_db():

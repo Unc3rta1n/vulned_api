@@ -7,9 +7,8 @@ from prometheus_fastapi_instrumentator import Instrumentator
 from prometheus_client import Counter  # Добавляем для кастомных метрик
 
 # Настройка логирования
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
+from logger import logger
 app = FastAPI()
 
 # Инициализация Prometheus
@@ -38,10 +37,10 @@ async def create_user(f_name: str, l_name: str, password: str):
     return {"message": "User created successfully"}
 
 @app.get("/good_create_user")
-async def good_create_user():
+async def good_create_user(f_name: str, l_name: str, password):
     conn = await get_conn_db()
     logger.info(f"{conn =} {type(conn)}")
-    result = await _good_create_user(conn, '132', '123', '31232312312')
+    result = await _good_create_user(conn, f_name, l_name, password)
     if result is None:
         DB_ERRORS.inc()
         return {"message": "Something went wrong"}
