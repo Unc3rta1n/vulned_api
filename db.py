@@ -11,7 +11,7 @@ async def get_conn_db():
             user='postgres',
             password='ZaqZaq123',
             database='test',
-            host='db',  # Имя сервиса из docker-compose.yml
+            host='db',
             port=5432
         )
     except Exception as e:
